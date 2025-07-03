@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Green Themed Calculator - Anikesh Kumar Pandey</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0d1f0d;
+      color: #ccffcc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin: 10px 0;
+      color: #00ff66;
+    }
+
+    .calculator {
+      background-color: #102810;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,255,0,0.2);
+      width: 300px;
+    }
+
+    .display {
+      width: 100%;
+      height: 50px;
+      text-align: right;
+      padding: 10px;
+      font-size: 24px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #163d16;
+      color: #00ff99;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: #1a661a;
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .clear-btn {
+      background-color: #e60000;
+    }
+
+    .clear-btn:hover {
+      background-color: #cc0000;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aaffaa;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to My Green Theme Calculator</h1>
+  <h2>Created by Anikesh Kumar Pandey</h2>
+
+  <div class="calculator">
+    <input type="text" class="display" id="display" readonly />
+    <div class="buttons" id="buttons">
+      <button onclick="appendValue('7')">7</button>
+      <button onclick="appendValue('8')">8</button>
+      <button onclick="appendValue('9')">9</button>
+      <button onclick="appendValue('/')">÷</button>
+
+      <button onclick="appendValue('4')">4</button>
+      <button onclick="appendValue('5')">5</button>
+      <button onclick="appendValue('6')">6</button>
+      <button onclick="appendValue('*')">×</button>
+
+      <button onclick="appendValue('1')">1</button>
+      <button onclick="appendValue('2')">2</button>
+      <button onclick="appendValue('3')">3</button>
+      <button onclick="appendValue('-')">−</button>
+
+      <button onclick="appendValue('0')">0</button>
+      <button onclick="appendValue('.')">.</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="appendValue('+')">+</button>
+
+      <button onclick="clearDisplay()" class="clear-btn" style="grid-column: span 4;">Clear</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>Email: anikeshk914@gmail.com</p>
+    <p>Contact: 9905831886</p>
+    <p>Thank you for using the calculator!</p>
+  </footer>
+
+  <script>
+    const display = document.getElementById('display');
+    const buttons = document.querySelectorAll('.buttons button:not(.clear-btn)');
+
+    function appendValue(value) {
+      display.value += value;
+    }
+
+    function calculate() {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = "Error";
+      }
+    }
+
+    function clearDisplay() {
+      display.value = '';
+    }
+
+    // Array of green shades for button color changes
+    const greenShades = [
+      '#1a661a', '#2e8b57', '#228b22', '#006400',
+      '#32cd32', '#00cc66', '#3cb371', '#00ff99'
+    ];
+
+    function changeButtonColors() {
+      buttons.forEach(button => {
+        const randomColor = greenShades[Math.floor(Math.random() * greenShades.length)];
+        button.style.backgroundColor = randomColor;
+      });
+    }
+
+    setInterval(changeButtonColors, 5000); // Change every 5 seconds
+  </script>
+</body>
+</html>
